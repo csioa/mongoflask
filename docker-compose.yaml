@@ -8,26 +8,32 @@ services:
       - .:/opt
     links:
       - mongo
+
   mongo:
-    restart: always
     image: mongo
+    restart: always
     environment:
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
-      - MONGO_INITDB_DATABASE=project
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+    ports:
+        - 27017:27017
+    volumes:
+      - mongo-data:/data/db
+      - mongo-configdb:/data/configdb
+      - ./sample_datasets:/data/datasets
+
   mongo-express:
     restart: always
     image: mongo-express
     environment:
       - ME_CONFIG_MONGODB_PORT=27017
-      - ME_CONFIG_MONGODB_ENABLE_ADMIN=false
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
       - ME_CONFIG_MONGODB_AUTH_USERNAME=${MONGO_ROOT_USER}
       - ME_CONFIG_MONGODB_AUTH_PASSWORD=${MONGO_ROOT_PASSWORD}
       - ME_CONFIG_BASICAUTH_USERNAME=${MONGOEXPRESS_LOGIN}
       - ME_CONFIG_BASICAUTH_PASSWORD=${MONGOEXPRESS_PASSWORD}
       - ME_CONFIG_MONGODB_AUTH_DATABASE=admin
       - ME_CONFIG_MONGODB_SERVER=mongo
-      - ME_CONFIG_MONGODB_URL=mongodb://{MONGO_ROOT_USER}:{MONGOEXPRESS_PASSWORD}@mongo:27017/
     depends_on:
       - mongo
     ports:
