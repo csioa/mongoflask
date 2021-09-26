@@ -5,7 +5,12 @@
 <div class="table-responsive">
     {{ pagination.links }}
 
-    <form action="{{ url_for('movie_list') }}" method="post">
+    <form action="{{ url_for('movie_search') }}" method="post">
+        <div class="row">
+            <div class="col">
+                <h3><a href="/" class="link-primary">Home</a></h3>
+            </div>
+        </div>
         <div class="row">
             <div class="col">
                 <label for="movieTitle">Title</label>
@@ -14,7 +19,7 @@
             <div class="col">
                 <label for="movieYear">Year(s)</label>
                 <select multiple class="form-control" id="movieYear" name="movieYear" placeholder="">
-                    {% for y in range(1890, 2022, 1) %}
+                    {% for y in range(1890, 2015, 1) %}
                         <option>{{ y }}</option>
                     {% endfor %}
                 </select>
