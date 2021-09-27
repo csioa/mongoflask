@@ -16,11 +16,3 @@ def test_show_single_page_or_not():
 def test_get_page_items():
     with app.test_request_context('/?page=1&per_page=20'):
         assert get_page_items(request, app) == (1, 20, 0)
-
-def test_get_pagination():
-    assert get_pagination(app) == Pagination(
-        css_framework='bootstrap4',
-        link_size='sm',
-        show_single_page=False,
-        **kwargs
-    )
