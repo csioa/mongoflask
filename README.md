@@ -1,7 +1,7 @@
 # Simple Flask web app on top of MongoDB
-<img src="https://app.travis-ci.com/csioa/mongoflask.svg?branch=main" alt="Build Status" />
-<img src="https://coveralls.io/repos/github/csioa/mongoflask/badge.svg?branch=main" alt="Coverage Status" />
 
+[![Build Status](https://app.travis-ci.com/csioa/mongoflask.svg?branch=main)](https://app.travis-ci.com/csioa/mongoflask)
+<img src="https://coveralls.io/repos/github/csioa/mongoflask/badge.svg?branch=main&kill_cache=1" />
 
 ### Importing data in MongoDB - movies collection 
 ```bash
